@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#home {
+    background: linear-gradient(#eb01a551, #d13531), url("../img/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    height: 95vh;
+}
+
+.contact input, textarea {
+    outline: none;
+}
