@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <title>CNMS</title>
     <meta charset="UTF-8">
@@ -18,7 +17,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
 
 </head>
-
 <body>
     <!-- Navbar -->
     <nav class="bg-gray-800">
