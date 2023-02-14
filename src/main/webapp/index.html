@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <title>CNMS</title>
     <meta charset="UTF-8">
@@ -17,6 +18,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
 
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -83,8 +85,6 @@
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-1">Settings</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Sign out</a>
                         </div>
@@ -188,9 +188,32 @@
                         </div>
                         <div>
                             <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                                option</label>
-                            <select id="selectSemester"
-                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                Semester</label>
+                            <select id="CSESemester"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                style="display: none;">
+                                <option selected>Select Semester</option>
+                                <option value="First">First</option>
+                                <option value="Second">Second</option>
+                                <option value="Third">Third</option>
+                                <option value="Foruth">Foruth</option>
+                                <option value="Fifth">Fifth</option>
+                                <option value="Sixth">Sixth</option>
+                                <option value="Seventh">Seventh</option>
+                                <option value="Eight">Eight</option>
+                            </select>
+                            <select id="MCASemester"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                style="display: none;">
+                                <option selected>Select Semester</option>
+                                <option value="First">First</option>
+                                <option value="Second">Second</option>
+                                <option value="Third">Third</option>
+                                <option value="Foruth">Foruth</option>
+                            </select>
+                            <select id="MBASemester"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                style="display: none;">
                                 <option selected>Select Semester</option>
                                 <option value="First">First</option>
                                 <option value="Second">Second</option>
@@ -200,7 +223,7 @@
                         </div>
                         <div>
                             <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
-                                option</label>
+                                Courses</label>
                             <select id="selectCourse"
                                 class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected>Select Course</option>

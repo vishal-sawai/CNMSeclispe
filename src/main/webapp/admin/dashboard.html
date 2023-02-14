@@ -16,6 +16,9 @@
     <!-- Font awesome -->
     <script src="https://kit.fontawesome.com/ff3c91d27a.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"></script>
+
+    <!-- Flowbite -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -49,8 +52,8 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="dashboard.html"
-                                class="bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium"
+                            <a onclick="show('maindash');"
+                                class="cursor-pointer bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium"
                                 aria-current="page">Dashboard</a>
 
                             <a onclick="show('Section1');"
@@ -86,8 +89,6 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0">Your Profile</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-1">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Sign out</a>
                         </div>
                     </div>
@@ -99,16 +100,17 @@
         <div class="hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3">
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="dashboard.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                <a onclick="show('maindash');"
+                    class="cursor-pointer bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                     aria-current="page">Dashboard</a>
 
-                <a href="#"
+                <a onclick="show('Section1');"
                     class="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Students</a>
 
-                <a href="#"
+                <a onclick="show('Section2');"
                     class="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Teachers</a>
 
-                <a href="#"
+                <a onclick="show('Section3');"
                     class="cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact
                     Us</a>
             </div>
@@ -118,7 +120,32 @@
     <!-- Navbar End -->
 
 
+    <!-- Dashboard Start -->
 
+    <div>
+        <div id="maindash" class="">
+            <div class="container mx-auto flex flex-wrap px-8">
+                <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
+                    style="background-color: #34495E ;">
+                    <h1 class="text-xl font-bold mb-3">Students</h1>
+                    <h1 class="text-6xl font-bold">1</h1>
+                </div>
+                <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
+                    style="background-color: #8E44AD;">
+                    <h1 class="text-xl font-bold mb-3">Teachers</h1>
+                    <h1 class="text-6xl font-bold">4</h1>
+                </div>
+                <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
+                    style="background-color: #34495E ;">
+                    <h1 class="text-xl font-bold mb-3">Notes</h1>
+                    <h1 class="text-6xl font-bold">5</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard End -->
 
 
     <!-- Student Section start -->
@@ -126,8 +153,8 @@
     <div class="relative overflow-x-auto shadow-md hidden" id="Section1">
         <div class="w-full flex px-3 py-2 bg-gray-900">
             <span class="text-white p-2 ">Add Students</span>
-            <i class="fa-solid fa-plus bg-white p-3 rounded-md cursor-pointer" data-bs-toggle="modal"
-                data-bs-target="#addStudent"></i>
+            <i class="fa-solid fa-plus bg-white p-3 rounded-md cursor-pointer" data-modal-target="addStudentModal"
+                data-modal-toggle="addStudentModal"></i>
         </div>
         <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
             <thead class="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
@@ -173,6 +200,96 @@
         </table>
     </div>
 
+    <!-- Add Student Modal-->
+
+    <!-- Main modal -->
+    <div id="addStudentModal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-5xl md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-5">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Add Students
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="addStudentModal">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+
+                <form class="p-5">
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label for="first_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                name</label>
+                            <input type="text" id="first_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                        <div>
+                            <label for="last_name"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                name</label>
+                            <input type="text" id="last_name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                        <div>
+                            <label for="phone"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
+                                number</label>
+                            <input type="tel" id="phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                        <div>
+                            <label for="roll_no"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roll
+                                number</label>
+                            <input type="number" id="r_no"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                            address</label>
+                        <input type="email" id="email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="" required>
+                    </div>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                        an option</label>
+                    <select id="departmentSelect"
+                        class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                    </select>
+                    <div>
+                        <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Student Modal -->
+
     <!-- Student Section end -->
 
     <!-- Teachers Section start -->
@@ -180,8 +297,8 @@
     <div class="relative overflow-x-auto shadow-md hidden" id="Section2">
         <div class="w-full flex px-3 py-2 bg-gray-900">
             <span class="text-white p-2 ">Add Teachers</span>
-            <i class="fa-solid fa-plus bg-white p-3 rounded-md cursor-pointer" data-bs-toggle="modal"
-                data-bs-target="#addteacher"></i>
+            <i class="fa-solid fa-plus bg-white p-3 rounded-md cursor-pointer" data-modal-target="addteacherModal"
+                data-modal-toggle="addteacherModal"></i>
         </div>
         <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
             <thead class="text-xs text-white uppercase bg-blue-600 border-b border-blue-400 dark:text-white">
@@ -199,6 +316,9 @@
                         Email
                     </th>
                     <th scope="col" class="px-6 py-3 ">
+                        Action
+                    </th>
+                    <th scope="col" class="px-6 py-3 bg-blue-500">
                         Action
                     </th>
                 </tr>
@@ -219,6 +339,9 @@
                         vishalsawai17252@gmail.com
                     </td>
                     <td class="px-6 py-4">
+                        <a href="#" class="font-medium text-white hover:underline">View Notes</a>
+                    </td>
+                    <td class="px-6 py-4 bg-blue-500">
                         <a href="#" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
@@ -226,6 +349,80 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Add Teacher Modal-->
+
+    <!-- Main modal -->
+    <div id="addteacherModal" tabindex="-1" aria-hidden="true"
+        class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+        <div class="relative w-full h-full max-w-5xl md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 p-5">
+                <!-- Modal header -->
+                <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Add Teachers
+                    </h3>
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="addteacherModal">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+
+                <form class="p-5">
+                    <div class="grid gap-6 mb-6 md:grid-cols-2">
+                        <div>
+                            <label for="first_name1"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                name</label>
+                            <input type="text" id="first_name1"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                        <div>
+                            <label for="last_name1"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                name</label>
+                            <input type="text" id="last_name1"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                            address</label>
+                        <input type="email" id="email1"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="" required>
+                    </div>
+                    <label for="countries1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                        an option</label>
+                    <select id="departmentSelect1"
+                        class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="MCA">MCA</option>
+                        <option value="MBA">MBA</option>
+                    </select>
+                    <div>
+                        <button type="submit"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-10 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Teachers Modal -->
 
     <!-- Teachers Section end -->
 
@@ -281,7 +478,7 @@
 
     <!-- Javascript -->
     <script src="../js/script.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
 </body>
 
 </html>

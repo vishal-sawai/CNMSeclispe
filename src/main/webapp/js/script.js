@@ -24,12 +24,28 @@ const navprofile = () => navprofilemenu.classList.toggle("hidden");
 //  data send 
 function formdata(val1) {
     document.getElementById("coursevalue").value = val1;
+
+    if (val1 == "CSE") {
+        document.getElementById("MCASemester").style.display = "none";
+        document.getElementById("CSESemester").style.display = "block";
+        document.getElementById("MBASemester").style.display = "none";
+    }
+    if (val1 == "MCA") {
+        document.getElementById("MCASemester").style.display = "block";
+        document.getElementById("CSESemester").style.display = "none";
+        document.getElementById("MBASemester").style.display = "none";
+    }
+    if (val1 == "MBA") {
+        document.getElementById("MCASemester").style.display = "none";
+        document.getElementById("CSESemester").style.display = "none";
+        document.getElementById("MBASemester").style.display = "block";
+    }
 }
 
 
 // Admin dashboard page
 // <!-- section hide and show code -->
-var divs = ["Section1", "Section2", "Section3"];
+var divs = ["Section1", "Section2", "Section3", "maindash"];
 var visibleId = null;
 
 function show(id) {
