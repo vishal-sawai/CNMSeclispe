@@ -286,27 +286,27 @@
         </div>
         <div>
             <div class="px-5 pb-10">
-                <form
+                <form action="contact" method="post"
                     class="bg-white sm:p-6 sm:w-4/5 mx-auto rounded-md sm:px-20 px-5 py-10 shadow-lg shadow-indigo-500/40">
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Name</label>
                         <input class="border border-gray-400 p-2 rounded-md w-full" type="text"
-                            placeholder="Enter your name">
+                            placeholder="Enter your name" name="name" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Email</label>
                         <input class="border border-gray-400 p-2 rounded-md w-full" type="email"
-                            placeholder="Enter your email">
+                            placeholder="Enter your email" name="email"  required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Phone</label>
                         <input class="border border-gray-400 p-2 rounded-md w-full" type="tel"
-                            placeholder="Enter your phone number">
+                            placeholder="Enter your phone number" name="phone"  required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Message</label>
                         <textarea class="border border-gray-400 p-2 rounded-md w-full h-32"
-                            placeholder="Enter your message"></textarea>
+                            placeholder="Enter your message" name="msg"  required></textarea>
                     </div>
                     <div>
                         <button

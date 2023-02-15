@@ -1,7 +1,14 @@
+<%@page import="sqlcode.DatabaseConnection"%>
+<%@page import="java.sql.*;"%>
+<%
+if(session.getAttribute("user")==null){
+	response.sendRedirect("admin_login.jsp");
+}
 
+    // Initialize the database
+    Connection con = DatabaseConnection.initializeDatabase();
 
-
-
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -91,9 +98,9 @@
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <li class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0"> <%=request.getParameter("email")%></li>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-900" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+                                id="user-menu-item-0"> <%=session.getAttribute("user")%></li>
+                            <a href="logout" class="block px-4 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-900" role="menuitem" tabindex="-1"
+                                id="user-menu-item-2">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -185,21 +192,40 @@
                     <td class="px-6 py-4">
                         1
                     </td>
+                    
+                    <%
+                    try{
+                    Statement st=con.createStatement();
+                    ResultSet rs=st.executeQuery("select * from student;");
+                    while(rs.next())
+                    {
+                       
+                    %>
+                    
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                        Vishal Sawai
+                       <%=rs.getString("fname"+" "+"lname") %>
                     </th>
                     <td class="px-6 py-4">
-                        MCA
+                        <%=rs.getString("depy") %>
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        vishalsawai17252@gmail.com
+                        <%=rs.getString("email") %>
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
-
+                   <%
+                   }
+                 }catch(Exception e){
+                	 out.print(e.getMessage());
+                 }
+                 finally{
+                     st.close();
+                     con.close();
+                 }
+                 %>
             </tbody>
         </table>
     </div>
@@ -231,7 +257,7 @@
                 </div>
                 <!-- Modal body -->
 
-                <form class="p-5">
+                <form action="addstudent" method="post" class="p-5" >
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="first_name"
@@ -239,7 +265,7 @@
                                 name</label>
                             <input type="text" id="first_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="fname" required>
                         </div>
                         <div>
                             <label for="last_name"
@@ -247,7 +273,7 @@
                                 name</label>
                             <input type="text" id="last_name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="lname" required>
                         </div>
                         <div>
                             <label for="phone"
@@ -255,7 +281,7 @@
                                 number</label>
                             <input type="tel" id="phone"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="phone" required>
                         </div>
                         <div>
                             <label for="roll_no"
@@ -263,7 +289,7 @@
                                 number</label>
                             <input type="number" id="r_no"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="rollno" required>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -271,11 +297,11 @@
                             address</label>
                         <input type="email" id="email"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
+                            placeholder="" name="email" required>
                     </div>
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                    <label for="dept" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                         an option</label>
-                    <select id="departmentSelect"
+                    <select id="departmentSelect" name="depart"
                         class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Department</option>
                         <option value="CSE">CSE</option>
@@ -381,7 +407,7 @@
                 </div>
                 <!-- Modal body -->
 
-                <form class="p-5">
+                <form action="addteacher" method="post" class="p-5">
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="first_name1"
@@ -389,7 +415,7 @@
                                 name</label>
                             <input type="text" id="first_name1"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="tfname" required>
                         </div>
                         <div>
                             <label for="last_name1"
@@ -397,7 +423,7 @@
                                 name</label>
                             <input type="text" id="last_name1"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder=""name="tlname" required>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -405,11 +431,11 @@
                             address</label>
                         <input type="email" id="email1"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
+                            placeholder="" name="temail" required>
                     </div>
                     <label for="countries1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
-                        an option</label>
-                    <select id="departmentSelect1"
+                        an Department</label>
+                    <select id="departmentSelect1" name="tdepart"
                         class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option selected>Department</option>
                         <option value="CSE">CSE</option>
