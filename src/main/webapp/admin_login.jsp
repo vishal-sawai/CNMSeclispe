@@ -40,12 +40,12 @@
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-                        <img class="block h-16 w-auto lg:hidden rounded-full" src="../img/cnms-logo.png" alt="CNMS">
-                        <img class="hidden h-16 w-auto lg:block rounded-full" src="../img/cnms-logo.png" alt="CNMS">
+                        <img class="block h-16 w-auto lg:hidden rounded-full" src="img/cnms-logo.png" alt="CNMS">
+                        <img class="hidden h-16 w-auto lg:block rounded-full" src="img/cnms-logo.png" alt="CNMS">
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="../index.html"
+                            <a href="index.jsp"
                                 class="bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium">Home</a>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3">
-                <a href="../index.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                <a href="index.jsp" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                     aria-current="page">Home</a>
             </div>
         </div>
@@ -72,24 +72,24 @@
             <div>
                 <div class="py-5 px-10 mx-auto" id="StudentForm">
                     <div class="pb-3">
-                        <img class="h-28 mx-auto" src="../img/cnms-logo.png" alt="" srcset="">
+                        <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">ADMIN LOGIN</h2>
                     </div>
-                    <form action="">
+                    <form action="adminlogin" method="post">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
                                 <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="email"
-                                    placeholder="Enter Your email">
+                                    placeholder="Enter Your email" name="username" required>
                             </div>
                             <div class="mb-5">
                                 <label class="block text-gray-700 font-medium mb-2">Password</label>
                                 <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="text"
-                                    placeholder="Enter Your Password">
+                                    placeholder="Enter Your Password" name="password" required>
                             </div>
                             <div>
                                 <button
-                                    class="bg-indigo-900 text-white w-full py-2 px-4 rounded-lg hover:bg-indigo-800 uppercase font-bold">Submit</button>
+                                    class="bg-indigo-900 text-white w-full py-2 px-4 rounded-lg hover:bg-indigo-800 uppercase font-bold" name="adminbtn">Submit</button>
                             </div>
                         </div>
                     </form>

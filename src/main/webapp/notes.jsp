@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +46,7 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="index.html"
+                            <a href="index.jsp"
                                 class="bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium">Home</a>
                         </div>
                     </div>
@@ -57,7 +58,7 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pt-2 pb-3">
-                <a href="index.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+                <a href="index.jsp" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
                     aria-current="page">Home</a>
             </div>
         </div>
