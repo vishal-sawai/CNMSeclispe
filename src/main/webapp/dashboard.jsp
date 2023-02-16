@@ -1,13 +1,14 @@
 <%@page import="sqlcode.DatabaseConnection"%>
-<%@page import="java.sql.*;"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="sqlcode.DatabaseConnection" %>
 <%
 if(session.getAttribute("user")==null){
 	response.sendRedirect("admin_login.jsp");
 }
-
-    // Initialize the database
-    Connection con = DatabaseConnection.initializeDatabase();
-
+Connection con = DatabaseConnection.initializeDatabase();
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,43 +189,41 @@ if(session.getAttribute("user")==null){
                 </tr>
             </thead>
             <tbody>
+            <%
+            try{ 
+            	Statement statementStrudent=con.createStatement();
+                String sqlStrudent ="SELECT * FROM student";
+
+                ResultSet resultSetStrudent = statementStrudent.executeQuery(sqlStrudent);
+                int data=1;
+                 while(resultSetStrudent.next()){
+                 %>
                 <tr class="bg-blue-600 border-b border-blue-400">
                     <td class="px-6 py-4">
-                        1
+                        <span><%= data %></span>
+                        <% data++; %>
                     </td>
-                    
-                    <%
-                    try{
-                    Statement st=con.createStatement();
-                    ResultSet rs=st.executeQuery("select * from student;");
-                    while(rs.next())
-                    {
-                       
-                    %>
                     
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                       <%=rs.getString("fname"+" "+"lname") %>
+                       <%=resultSetStrudent.getString("fname")+" "+ resultSetStrudent.getString("lname") %>
                     </th>
                     <td class="px-6 py-4">
-                        <%=rs.getString("depy") %>
+                        <%=resultSetStrudent.getString("dept") %>
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        <%=rs.getString("email") %>
+                        <%=resultSetStrudent.getString("email") %>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-white hover:underline">Delete</a>
+                        <a href="delete.jsp?id=<%=resultSetStrudent.getString("id") %>&table=student" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
-                   <%
-                   }
-                 }catch(Exception e){
-                	 out.print(e.getMessage());
-                 }
-                 finally{
-                     st.close();
-                     con.close();
-                 }
+                  <% 
+                    }
+
+                    }catch (Exception e){
+                    e.printStackTrace();
+                    }
                  %>
             </tbody>
         </table>
@@ -354,28 +353,46 @@ if(session.getAttribute("user")==null){
                 </tr>
             </thead>
             <tbody>
+            <%
+             try{ 
+            	Statement statementteacher=con.createStatement();
+                String sqlteacher ="SELECT * FROM teacher";
+
+                 ResultSet resultSetteacher = statementteacher.executeQuery(sqlteacher);
+                 int data1=1;  
+                 while(resultSetteacher.next()){
+                 %>
                 <tr class="bg-blue-600 border-b border-blue-400">
-                    <td class="px-6 py-4">
-                        1
+                  <td class="px-6 py-4">
+                        <span><%= data1 %></span>
+                        <% data1++; %>
                     </td>
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                        Vishal Sawai
+                       <%=resultSetteacher.getString("fname")+" "+ resultSetteacher.getString("lname") %>
                     </th>
                     <td class="px-6 py-4">
-                        MCA
+                      <%=resultSetteacher.getString("dept") %>
+
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        vishalsawai17252@gmail.com
+                     <%=resultSetteacher.getString("Email") %>
+                        
                     </td>
                     <td class="px-6 py-4">
                         <a href="#" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        <a href="#" class="font-medium text-white hover:underline">Delete</a>
+                       <a href="delete.jsp?id=<%=resultSetteacher.getString("id") %>&table=teacher" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
+                  <% 
+                 }
 
+                 } catch (Exception e) {
+                 e.printStackTrace();
+                 }
+                 %>
             </tbody>
         </table>
     </div>
@@ -481,25 +498,41 @@ if(session.getAttribute("user")==null){
                 </tr>
             </thead>
             <tbody>
+            <%
+             try{ 
+            	Statement statementcontatct=con.createStatement();
+                String sqlcontatct ="SELECT * FROM contact";
+
+                 ResultSet resultSetcontatct = statementcontatct.executeQuery(sqlcontatct);
+                 int data2=1;  
+                 while(resultSetcontatct.next()){
+                 %>
                 <tr class="bg-blue-600 border-b border-blue-400">
-                    <td class="px-6 py-4">
-                        1
+                      <td class="px-6 py-4">
+                        <span><%= data2 %></span>
+                        <% data2++; %>
                     </td>
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                        Vishal Sawai
+                      <%=resultSetcontatct.getString("name") %>
                     </th>
                     <td class="px-6 py-4">
-                        9623639110
+                   <%=resultSetcontatct.getString("phone") %>
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        Hi vishal sawai
+                    <%=resultSetcontatct.getString("msg") %>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-white hover:underline">Delete</a>
+                        <a href="delete.jsp?id=<%=resultSetcontatct.getString("id") %>&table=contact" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
+                 <% 
+                 }
 
+                 } catch (Exception e) {
+                 e.printStackTrace();
+                 }
+                 %>
             </tbody>
         </table>
     </div>
