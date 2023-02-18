@@ -1,3 +1,9 @@
+<%
+if(session.getAttribute("TeacherUser")==null){
+	response.sendRedirect("login.jsp");
+}
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,14 +77,13 @@
                             </button>
                         </div>
 
-                        <div id="navprofilemenu"
-                            class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                         <div id="navprofilemenu"
+                            class="hidden absolute right-0 z-10 mt-2 w-60 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <!-- Active: "bg-gray-100", Not Active: "" -->
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-2">Sign out</a>
+                              <li class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                                id="user-menu-item-0"> <%=session.getAttribute("TeacherUser")%></li>
+                            <a href="logout?page=login.jsp" class="block px-4 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-900" role="menuitem" tabindex="-1"
+                                id="user-menu-item-2">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -133,7 +138,7 @@
                     </td>
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                        File Headling
+                        File Heading
                     </th>
                     <td class="px-6 py-4">
                         how are You
@@ -182,14 +187,14 @@
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                             <input type="text" id="title"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="title" required>
                         </div>
                         <div>
                             <label for="description"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                             <input type="text" id="description"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required>
+                                placeholder="" name="description" required>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -197,7 +202,7 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subject</label>
                         <input type="text" id="subject"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
+                            placeholder="" name="subject" required>
                     </div>
                     <div class="mb-6">
                         <label for="Select Notes File"
@@ -205,7 +210,7 @@
                             File</label>
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="file_input" type="file">
+                            id="file_input" name="filename" type="file">
                     </div>
                     <div>
                         <button type="submit"

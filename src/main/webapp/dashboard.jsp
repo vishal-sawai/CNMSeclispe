@@ -100,7 +100,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                             <!-- Active: "bg-gray-100", Not Active: "" -->
                             <li class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
                                 id="user-menu-item-0"> <%=session.getAttribute("user")%></li>
-                            <a href="logout" class="block px-4 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-900" role="menuitem" tabindex="-1"
+                            <a href="logout?page=admin_login.jsp" class="block px-4 py-2 text-sm text-gray-900 hover:text-white hover:bg-gray-900" role="menuitem" tabindex="-1"
                                 id="user-menu-item-2">Logout</a>
                         </div>
                     </div>

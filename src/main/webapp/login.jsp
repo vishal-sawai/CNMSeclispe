@@ -84,17 +84,17 @@
                         <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">STUDENT LOGIN</h2>
                     </div>
-                    <form action="">
+                    <form action="studentlogin" method="post">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
                                 <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="email"
-                                    placeholder="Enter Your email">
+                                   name="username" placeholder="Enter Your email" required>
                             </div>
                             <div class="mb-5">
                                 <label class="block text-gray-700 font-medium mb-2">Password</label>
                                 <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="text"
-                                    placeholder="Enter Your Password">
+                                   name="password" placeholder="Enter Your Password" required>
                             </div>
                             <div>
                                 <button
@@ -111,17 +111,17 @@
                         <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">TEACHER LOGIN</h2>
                     </div>
-                    <form action="">
+                    <form action="teacherlogin" method="post">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="email"
-                                    placeholder="Enter Your email">
+                                <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="email" name="username"
+                                    placeholder="Enter Your email" required>
                             </div>
                             <div class="mb-5">
                                 <label class="block text-gray-700 font-medium mb-2">Password</label>
-                                <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="text"
-                                    placeholder="Enter Your Password">
+                                <input class="border border-gray-400 p-2 rounded-md w-full outline-none" type="text" name="password"
+                                    placeholder="Enter Your Password" required>
                             </div>
                             <div>
                                 <button
