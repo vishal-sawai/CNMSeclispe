@@ -199,32 +199,32 @@
                                 class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 style="display: none;">
                                 <option selected>Select Semester</option>
-                                <option value="First">First</option>
-                                <option value="Second">Second</option>
-                                <option value="Third">Third</option>
-                                <option value="Foruth">Foruth</option>
-                                <option value="Fifth">Fifth</option>
-                                <option value="Sixth">Sixth</option>
-                                <option value="Seventh">Seventh</option>
-                                <option value="Eight">Eight</option>
+                                <option value="1">First Sem</option>
+                                <option value="2">Second Sem</option>
+                                <option value="3">Third Sem</option>
+                                <option value="4">Foruth Sem</option>
+                                <option value="5">Fifth Sem</option>
+                                <option value="6">Sixth Sem</option>
+                                <option value="7">Seventh Sem</option>
+                                <option value="8">Eight Sem</option>
                             </select>
                             <select id="MCASemester"
                                 class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 style="display: none;">
                                 <option selected>Select Semester</option>
-                                <option value="First">First</option>
-                                <option value="Second">Second</option>
-                                <option value="Third">Third</option>
-                                <option value="Foruth">Foruth</option>
+                                <option value="1">First Sem</option>
+                                <option value="2">Second Sem</option>
+                                <option value="3">Third Sem</option>
+                                <option value="4">Foruth Sem</option>
                             </select>
                             <select id="MBASemester"
                                 class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 style="display: none;">
                                 <option selected>Select Semester</option>
-                                <option value="First">First</option>
-                                <option value="Second">Second</option>
-                                <option value="Third">Third</option>
-                                <option value="Foruth">Foruth</option>
+                                <option value="1">First Sem</option>
+                                <option value="2">Second Sem</option>
+                                <option value="3">Third Sem</option>
+                                <option value="4">Foruth Sem</option>
                             </select>
                         </div>
                         <div>
