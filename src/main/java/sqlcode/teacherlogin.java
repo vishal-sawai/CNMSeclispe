@@ -28,6 +28,7 @@ public class teacherlogin extends HttpServlet {
 		RequestDispatcher rd = null;
         HttpSession session = request.getSession();
         String user = request.getParameter("username");
+        String pass = request.getParameter("password");
 		 try {
 			  
 	            // Initialize the database
@@ -45,6 +46,8 @@ public class teacherlogin extends HttpServlet {
 
 	            if(rs.next()) {
 	            	session.setAttribute("TeacherUser",user);
+	            	session.setAttribute("TeacherPass",pass);
+
 	                rd=request.getRequestDispatcher("teacherportal.jsp");
 	            }else {
 	            response.setContentType("text/html");

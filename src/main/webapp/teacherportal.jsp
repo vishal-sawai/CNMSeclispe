@@ -1,3 +1,10 @@
+<%@page import="sqlcode.DatabaseConnection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="sqlcode.DatabaseConnection" %>
 <%
 if(session.getAttribute("TeacherUser")==null){
 	response.sendRedirect("login.jsp");
@@ -164,7 +171,7 @@ if(session.getAttribute("TeacherUser")==null){
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Add Students
+                        Add Notes
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -223,27 +230,33 @@ if(session.getAttribute("TeacherUser")==null){
                         <input
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                             id="file_input" name="filename" type="file">
+                            
                     </div>
-                 <%@page import="sqlcode.DatabaseConnection"%>
-                 <%@page import="java.sql.DriverManager"%>
-                 <%@page import="java.sql.ResultSet"%>
-                 <%@page import="java.sql.Statement"%>
-                 <%@page import="java.sql.Connection"%>
-                 <%@page import="sqlcode.DatabaseConnection" %>
 
-                    
+                <% String userEmail = (String)request.getSession().getAttribute("TeacherUser"); %>
+                <% String userPass = (String)request.getSession().getAttribute("TeacherPass"); %>
                 <%
 
                   Connection con = DatabaseConnection.initializeDatabase();
 
                                  try{ 
-            	Statement statementStrudent=con.createStatement();
-                String sqlTeacher ="SELECT * FROM teacher";
-
-                ResultSet resultSetTeacher = statementStrudent.executeQuery(sqlTeacher);
+                                       
+                                  PreparedStatement ps = con.prepareStatement("select * from teacher where email = ? and password = ?");                                                
+                                  ps.setString(1, userEmail);  
+                                  ps.setString(2, userPass);                                                                  
+                                                    
+                                  ResultSet resultSetTeacher = ps.executeQuery();  
 
                         while(resultSetTeacher.next()){
                  %>
+                 <div>
+             
+                 <input type="hidden"  name="useremail" value="<%=userEmail%>">
+                 <input type="hidden"  name="teachername" value=" <%=resultSetTeacher.getString("fname")+" "+ resultSetTeacher.getString("lname") %>">
+                 <input type="hidden"  name="userid" value="<%=resultSetTeacher.getString("id")%>">
+                 <input type="hidden"  name="dept" value="<%=resultSetTeacher.getString("dept")%>">
+                 
+                 </div>
                  
                    <% 
                     }
