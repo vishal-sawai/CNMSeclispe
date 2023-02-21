@@ -35,7 +35,7 @@ public class notes extends HttpServlet {
 		        String description = request.getParameter("description");
 		        String subject = request.getParameter("subject");
 		        String dept = request.getParameter("dept");
-		        String filename = request.getParameter("filename");
+		       // String filename = request.getParameter("filename");
 		        String sem = request.getParameter("sem");
 		        String usermail = request.getParameter("usermail");
 		        String teachername = request.getParameter("teachername");
@@ -44,7 +44,7 @@ public class notes extends HttpServlet {
 		         
 		        InputStream inputStream = null; 
 		         
-		        Part filePart = request.getPart("uploadnotes");
+		        Part filePart = request.getPart("filename");
 		        if (filePart != null) {
 		            // prints out some information for debugging
 		            System.out.println(filePart.getName());
