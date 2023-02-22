@@ -98,7 +98,7 @@ if(session.getAttribute("StudentUser")==null){
                  while(rs.next()){
                  %>
         
-            <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
+            <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2"
                 style="background-color: #34495E ;">
                 <h1 class="text-xl font-bold mb-1"><%=rs.getString("title") %></h1>
                 <p class="mb-4"><%=rs.getString("description") %></p>

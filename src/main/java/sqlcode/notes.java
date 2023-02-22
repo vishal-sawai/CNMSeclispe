@@ -37,7 +37,7 @@ public class notes extends HttpServlet {
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		Part file = request.getPart("filename");
+		Part file = request.getPart("file");
 		
 		String pdfFileName = file.getSubmittedFileName();
 		System.out.println("pdf "+ pdfFileName);
@@ -57,9 +57,9 @@ public class notes extends HttpServlet {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		Connection con =null;
+		Connection con = null;
 		try {
-		 String title = request.getParameter("title");
+		    String title = request.getParameter("title");
 	        String description = request.getParameter("description");
 	        String subject = request.getParameter("subject");
 	        String dept = request.getParameter("dept");

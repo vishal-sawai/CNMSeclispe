@@ -169,10 +169,8 @@ if(session.getAttribute("TeacherUser")==null){
                     
                     <%
                         String nfile = resultSetNote.getString("filename");
-
-
                       %>
-                     <!--<img alt="" src="uploadnotes/-->  <!--style="height:100px;width:200px;">--> 
+           
                       <a href="uploadnotes/<%=resultSetNote.getString("filename")%>" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
                     
@@ -266,9 +264,9 @@ if(session.getAttribute("TeacherUser")==null){
                         <label for="Select Notes File"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Notes
                             File</label>
-                        <input type="file"
+                        <input type="file"name="file"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="file_input" name="filename" >
+                            id="file_input"  >
                             
                     </div>
 

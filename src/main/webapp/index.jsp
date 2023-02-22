@@ -154,21 +154,23 @@
         <div class="heading text-center pt-7 px-8">
             <h2 class="text-3xl uppercase pb-1 font-bold text-lime-800">Courses</h2>
             <hr class="sm:w-60 mx-auto bg-lime-600 h-1 rounded-md">
-        </div>
+        </div>
         <div class="container mx-auto flex flex-wrap px-8">
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600  text-white my-5 mx-2">
                 <h1 class="text-4xl uppercase font-bold">CSE</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700" onclick="formdata('CSE')">Select
                 </button>
             </div>
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
+
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600  text-white my-5 mx-2">
                 <h1 class="text-4xl uppercase font-bold">MCA</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700"
                     onclick="formdata('MCA')">Select</button>
             </div>
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
+
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600  text-white my-5 mx-2">
                 <h1 class="text-4xl uppercase font-bold">MBA</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700"
