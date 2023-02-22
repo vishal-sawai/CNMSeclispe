@@ -1,3 +1,16 @@
+<%@page import="sqlcode.DatabaseConnection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="sqlcode.DatabaseConnection" %>
+<%
+ Connection con = DatabaseConnection.initializeDatabase();
+
+%>
+
 <!doctype html>
 <html>
 
@@ -143,19 +156,19 @@
             <hr class="sm:w-60 mx-auto bg-lime-600 h-1 rounded-md">
         </div>
         <div class="container mx-auto flex flex-wrap px-8">
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 mx-2 grow">
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
                 <h1 class="text-4xl uppercase font-bold">CSE</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700" onclick="formdata('CSE')">Select
                 </button>
             </div>
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 mx-2 grow">
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
                 <h1 class="text-4xl uppercase font-bold">MCA</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700"
                     onclick="formdata('MCA')">Select</button>
             </div>
-            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 mx-2 grow">
+            <div class="dpt w-full text-center mx-auto py-10 sm:w-96 rounded-md bg-sky-600 text-white my-5 grow mx-2">
                 <h1 class="text-4xl uppercase font-bold">MBA</h1><br>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     class="py-3 px-10 bg-rose-900 rounded-full hover:bg-rose-700"
@@ -188,16 +201,15 @@
                         <div>
                             <label for="Course_name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course Name</label>
-                            <input type="text" id="coursevalue"
+                            <input type="text" id="coursevalue" name="dept-name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="" required disabled>
+                                  placeholder="" required>
                         </div>
                         <div>
                             <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
                                 Semester</label>
-                            <select id="CSESemester"
-                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                style="display: none;">
+                            <select id="" name="sem"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected>Select Semester</option>
                                 <option value="1">First Sem</option>
                                 <option value="2">Second Sem</option>
@@ -208,35 +220,33 @@
                                 <option value="7">Seventh Sem</option>
                                 <option value="8">Eight Sem</option>
                             </select>
-                            <select id="MCASemester"
-                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                style="display: none;">
-                                <option selected>Select Semester</option>
-                                <option value="1">First Sem</option>
-                                <option value="2">Second Sem</option>
-                                <option value="3">Third Sem</option>
-                                <option value="4">Foruth Sem</option>
-                            </select>
-                            <select id="MBASemester"
-                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                style="display: none;">
-                                <option selected>Select Semester</option>
-                                <option value="1">First Sem</option>
-                                <option value="2">Second Sem</option>
-                                <option value="3">Third Sem</option>
-                                <option value="4">Foruth Sem</option>
-                            </select>
                         </div>
                         <div>
                             <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
                                 Courses</label>
-                            <select id="selectCourse"
+                            <select id="selectCourse" name="subject"
                                 class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected>Select Course</option>
-                                <option value="Java">Java</option>
-                                <option value="Php">Php</option>
-                                <option value="OS">OS</option>
-                                <option value="DSA">DSA</option>
+               <% 
+               try{ 
+            	Statement statementNote=con.createStatement();
+                String sqlNote ="SELECT * FROM notes";
+
+                 ResultSet resultSetNote = statementNote.executeQuery(sqlNote);
+           
+                 while(resultSetNote.next()){
+                 %>
+                                
+                                <option value="<%=resultSetNote.getString("subject")%>"> <%=resultSetNote.getString("subject")%></option>
+                               
+                        <% 
+                 }
+
+                 } catch (Exception e) {
+                 e.printStackTrace();
+                 }
+                 %>           
+                                
                             </select>
                         </div>
                         <button type="submit"

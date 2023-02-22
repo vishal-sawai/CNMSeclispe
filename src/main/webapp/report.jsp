@@ -1,4 +1,5 @@
 <%@page import="sqlcode.DatabaseConnection"%>
+<%@page import="java.util.*"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.sql.ResultSet"%>
@@ -8,9 +9,7 @@
 <%@page import="sqlcode.DatabaseConnection" %>
 <%
  Connection con = DatabaseConnection.initializeDatabase();
-if(session.getAttribute("StudentUser")==null){
-	//response.sendRedirect("login.jsp");
-}
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,24 +84,27 @@ if(session.getAttribute("StudentUser")==null){
         <div class="container mx-auto flex flex-wrap px-8">
         
          <% 
-               try{ 
-            	Statement statementNote=con.createStatement();
-                String sqlNote ="SELECT * FROM notes";
-
-                 ResultSet resultSetNote = statementNote.executeQuery(sqlNote);
-                 int data=1;  
-                 while(resultSetNote.next()){
+               try{  
+            	  String id=request.getParameter("id");
+            	  Statement statementNote=con.createStatement(); 
+            	  PreparedStatement st = con.prepareStatement("SELECT * FROM notes where teacherid  = ?");
+        
+	               st.setString(1,id);
+	           
+	            ResultSet rs = st.executeQuery();
+                
+                 while(rs.next()){
                  %>
         
             <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
                 style="background-color: #34495E ;">
-                <h1 class="text-xl font-bold mb-1">Hello word</h1>
-                <p class="mb-4">java is good language nowadays</p>
-                <a class="py-3 px-10 bg-blue-600 rounded-full hover:bg-blue-700">View
+                <h1 class="text-xl font-bold mb-1"><%=rs.getString("title") %></h1>
+                <p class="mb-4"><%=rs.getString("description") %></p>
+                <a href="uploadnotes/<%=rs.getString("filename")%>" class="py-3 px-10 bg-blue-600 rounded-full hover:bg-blue-700">View
                     Notes</a>
                 <div class="pt-5">
-                    <span class="float-left mx-3" style="color: #BDC3C7 ;">Prof Abc </span>
-                    <span class="float-right mx-3" style="color: #BDC3C7 ;">14-2-2023</span>
+                    <span class="float-left mx-3" style="color: #BDC3C7 ;"><%=rs.getString("teacherName") %></span>
+                    <span class="float-right mx-3" style="color: #BDC3C7 ;"><%=rs.getString("datetime")%></span>
                 </div>
             </div>
               <% 

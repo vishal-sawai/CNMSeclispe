@@ -140,17 +140,68 @@ Connection con = DatabaseConnection.initializeDatabase();
                 <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
                     style="background-color: #34495E ;">
                     <h1 class="text-xl font-bold mb-3">Students</h1>
-                    <h1 class="text-6xl font-bold">1</h1>
+                      <%
+            try{ 
+            	Statement statementStrudentdd=con.createStatement();
+                String sqlStrudentdd ="SELECT COUNT(*) FROM student";
+                ResultSet resultSetStrudentdd = statementStrudentdd.executeQuery(sqlStrudentdd);
+                String Countrow1="";
+                while(resultSetStrudentdd.next()){
+               	 Countrow1 = resultSetStrudentdd.getString(1);
+              
+                   }
+                %>
+                <h1 class="text-6xl font-bold"><%= Countrow1 %></h1>
+                <%
+                   }catch (Exception e){
+                   e.printStackTrace();
+                   }
+                   
+                %>
                 </div>
                 <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
                     style="background-color: #8E44AD;">
                     <h1 class="text-xl font-bold mb-3">Teachers</h1>
-                    <h1 class="text-6xl font-bold">4</h1>
+                    
+             <%
+            try{ 
+            	Statement statementteacherdd=con.createStatement();
+                String sqlteacherdd ="SELECT COUNT(*) FROM teacher";
+                ResultSet resultSetteacherdd = statementteacherdd.executeQuery(sqlteacherdd);
+                String Countrow2="";
+                while(resultSetteacherdd.next()){
+               	 Countrow2 = resultSetteacherdd.getString(1);
+             
+                   }
+                %>
+                <h1 class="text-6xl font-bold"><%= Countrow2 %></h1>
+                <%
+                   }catch (Exception e){
+                   e.printStackTrace();
+                   }
+                %>
+
                 </div>
                 <div class="dpt w-full text-center mx-auto pt-6 pb-10 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
                     style="background-color: #34495E ;">
                     <h1 class="text-xl font-bold mb-3">Notes</h1>
-                    <h1 class="text-6xl font-bold">5</h1>
+          <%
+            try{ 
+            	Statement statementnotesdd=con.createStatement();
+                String sqlnotesdd ="SELECT COUNT(*)FROM notes";
+                ResultSet resultSetnotesdd = statementnotesdd.executeQuery(sqlnotesdd);
+                String Countrow3="";
+                 while(resultSetnotesdd.next()){
+                	 Countrow3 = resultSetnotesdd.getString(1);
+               
+                    }
+                 %>
+                 <h1 class="text-6xl font-bold"><%= Countrow3 %></h1>
+                 <%
+                    }catch (Exception e){
+                    e.printStackTrace();
+                    }
+                 %>
                 </div>
 
             </div>
@@ -215,7 +266,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                         <%=resultSetStrudent.getString("email") %>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="delete.jsp?id=<%=resultSetStrudent.getString("id") %>&table=student" class="font-medium text-white hover:underline">Delete</a>
+                        <a href="delete.jsp?id=<%=resultSetStrudent.getString("id") %>&table=student&page=dashboard.jsp" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
                   <% 
@@ -278,7 +329,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                             <label for="phone"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone
                                 number</label>
-                            <input type="tel" id="phone"
+                            <input type="text" id="phone"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="" name="phone" required>
                         </div>
@@ -286,7 +337,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                             <label for="roll_no"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roll
                                 number</label>
-                            <input type="number" id="r_no"
+                            <input type="text" id="r_no"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="" name="rollno" required>
                         </div>
@@ -380,10 +431,10 @@ Connection con = DatabaseConnection.initializeDatabase();
                         
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-white hover:underline">View Notes</a>
+                        <a href="report.jsp?id=<%=resultSetteacher.getString("id")%>" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
                     <td class="px-6 py-4 bg-blue-500">
-                       <a href="delete.jsp?id=<%=resultSetteacher.getString("id") %>&table=teacher" class="font-medium text-white hover:underline">Delete</a>
+                       <a href="delete.jsp?id=<%=resultSetteacher.getString("id") %>&table=teacher&page=dashboard.jsp" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
                   <% 
@@ -523,7 +574,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                     <%=resultSetcontatct.getString("msg") %>
                     </td>
                     <td class="px-6 py-4">
-                        <a href="delete.jsp?id=<%=resultSetcontatct.getString("id") %>&table=contact" class="font-medium text-white hover:underline">Delete</a>
+                        <a href="delete.jsp?id=<%=resultSetcontatct.getString("id") %>&table=contact&page=dashboard.jsp" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
                  <% 

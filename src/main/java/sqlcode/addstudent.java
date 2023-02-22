@@ -42,8 +42,8 @@ public class addstudent extends HttpServlet {
 	            
 	            st.setString(1, request.getParameter("fname"));
 	            st.setString(2, request.getParameter("lname"));
-	            st.setInt(3, Integer.valueOf(request.getParameter("phone")));
-	            st.setInt(4, Integer.valueOf(request.getParameter("rollno")));
+	            st.setString(3, request.getParameter("phone"));
+	            st.setString(4, request.getParameter("rollno"));
 	            st.setString(5, request.getParameter("email"));
 	            st.setString(6, request.getParameter("depart"));
 	            st.setString(7,pass);

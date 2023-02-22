@@ -53,10 +53,12 @@ public class notes extends HttpServlet {
 		is.read();
 		fos.write(data);
 		fos.close();
-		}catch(Exception e) {
+		}
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 		Connection con =null;
+		try {
 		 String title = request.getParameter("title");
 	        String description = request.getParameter("description");
 	        String subject = request.getParameter("subject");
@@ -65,7 +67,7 @@ public class notes extends HttpServlet {
 	        String teachername = request.getParameter("teachername");
 	        String userid = request.getParameter("userid");
 		
-		try {
+	
 			// Initialize the database
             con = DatabaseConnection.initializeDatabase();
             

@@ -10,6 +10,7 @@ try{
  
  String id=request.getParameter("id");
  String table=request.getParameter("table");
+ String pagename = request.getParameter("page");
  
  Statement st=con.createStatement();
  int i=st.executeUpdate("DELETE FROM "+table+" WHERE id="+id);
@@ -18,9 +19,8 @@ try{
     PrintWriter pw=response.getWriter();
     pw.println("<script type=\"text/javascript\">");
     pw.println("alert('Data Deleted Successfully!');");
-    pw.println("window.location.href = 'dashboard.jsp';");
     pw.println("</script>");
-    
+    response.sendRedirect(pagename);
  
 } catch (Exception e) {
     e.printStackTrace();
