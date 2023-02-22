@@ -1,11 +1,14 @@
 <%@page import="sqlcode.DatabaseConnection"%>
 <%@page import="java.sql.DriverManager"%>
+<%@page import="java.io.IOException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="sqlcode.DatabaseConnection" %>
 <%
+ Connection con = DatabaseConnection.initializeDatabase();
+
 if(session.getAttribute("TeacherUser")==null){
 	response.sendRedirect("login.jsp");
 }
@@ -32,6 +35,7 @@ if(session.getAttribute("TeacherUser")==null){
 
     <!-- Flowbite -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
 </head>
 
 <body>
@@ -137,26 +141,52 @@ if(session.getAttribute("TeacherUser")==null){
                         Action
                     </th>
                 </tr>
-            </thead>
-            <tbody>
+            </thead> 
+                <tbody>
+               <% 
+               try{ 
+            	Statement statementNote=con.createStatement();
+                String sqlNote ="SELECT * FROM notes";
+
+                 ResultSet resultSetNote = statementNote.executeQuery(sqlNote);
+                 int data=1;  
+                 while(resultSetNote.next()){
+                 %>
                 <tr class="bg-blue-600 border-b border-blue-400">
                     <td class="px-6 py-4">
-                        1
+                           <span><%= data %></span>
+                        <% data++; %>
                     </td>
                     <th scope="row"
                         class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-                        File Heading
+                      <%=resultSetNote.getString("title") %>
                     </th>
+                    
                     <td class="px-6 py-4">
-                        how are You
-                    </td>
+                   <%=resultSetNote.getString("description") %>
+                  </td>
                     <td class="px-6 py-4 bg-blue-500">
-                        <a href="#" class="font-medium text-white hover:underline">View Notes</a>
+                    
+                    <%
+                        String nfile = resultSetNote.getString("filename");
+
+
+                      %>
+                     <!--<img alt="" src="uploadnotes/-->  <!--style="height:100px;width:200px;">--> 
+                      <a href="C:/Users/VISHAL SAWAI/eclipse-workspace/CNMS/src/main/webapp/uploadnotes/<%=resultSetNote.getString("filename")%>" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
+                    
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-white hover:underline">Delete</a>
+                        <a href="delete.jsp?id=<%=resultSetNote.getString("id") %>&table=notes" class="font-medium text-white hover:underline">Delete</a>
                     </td>
                 </tr>
+                 <% 
+                 }
+
+                 } catch (Exception e) {
+                 e.printStackTrace();
+                 }
+                 %>
 
             </tbody>
         </table>
@@ -216,9 +246,18 @@ if(session.getAttribute("TeacherUser")==null){
                             <div>
                           <label for="Select_semester"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">semester</label>
-                        <input type="number" id="sem"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" name="sem" required>
+                             <select id="Semester"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="sem" required>
+                                <option selected>Select Semester</option>
+                                <option value="1">First Sem</option>
+                                <option value="2">Second Sem</option>
+                                <option value="3">Third Sem</option>
+                                <option value="4">Foruth Sem</option>
+                                <option value="5">Fifth Sem</option>
+                                <option value="6">Sixth Sem</option>
+                                <option value="7">Seventh Sem</option>
+                                <option value="8">Eight Sem</option>
+                            </select>
                          </div>
                         </div>
                        </div>
@@ -227,18 +266,15 @@ if(session.getAttribute("TeacherUser")==null){
                         <label for="Select Notes File"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Notes
                             File</label>
-                        <input
+                        <input type="file"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="file_input" name="filename" type="file">
+                            id="file_input" name="filename" >
                             
                     </div>
 
                 <% String userEmail = (String)request.getSession().getAttribute("TeacherUser"); %>
                 <% String userPass = (String)request.getSession().getAttribute("TeacherPass"); %>
                 <%
-
-                  Connection con = DatabaseConnection.initializeDatabase();
-
                                  try{ 
                                        
                                   PreparedStatement ps = con.prepareStatement("select * from teacher where email = ? and password = ?");                                                

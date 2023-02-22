@@ -1,6 +1,15 @@
+<%@page import="sqlcode.DatabaseConnection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="sqlcode.DatabaseConnection" %>
 <%
+ Connection con = DatabaseConnection.initializeDatabase();
 if(session.getAttribute("StudentUser")==null){
-	response.sendRedirect("login.jsp");
+	//response.sendRedirect("login.jsp");
 }
 %>
 <!DOCTYPE html>
@@ -74,6 +83,17 @@ if(session.getAttribute("StudentUser")==null){
 
     <div id="" class="mb-4">
         <div class="container mx-auto flex flex-wrap px-8">
+        
+         <% 
+               try{ 
+            	Statement statementNote=con.createStatement();
+                String sqlNote ="SELECT * FROM notes";
+
+                 ResultSet resultSetNote = statementNote.executeQuery(sqlNote);
+                 int data=1;  
+                 while(resultSetNote.next()){
+                 %>
+        
             <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
                 style="background-color: #34495E ;">
                 <h1 class="text-xl font-bold mb-1">Hello word</h1>
@@ -85,28 +105,13 @@ if(session.getAttribute("StudentUser")==null){
                     <span class="float-right mx-3" style="color: #BDC3C7 ;">14-2-2023</span>
                 </div>
             </div>
-            <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
-                style="background-color: #34495E ;">
-                <h1 class="text-xl font-bold mb-1">Hello word</h1>
-                <p class="mb-4">java is good language nowadays</p>
-                <a class="py-3 px-10 bg-blue-600 rounded-full hover:bg-blue-700">View
-                    Notes</a>
-                <div class="pt-5">
-                    <span class="float-left mx-3" style="color: #BDC3C7 ;">Prof Abc </span>
-                    <span class="float-right mx-3" style="color: #BDC3C7 ;">14-2-2023</span>
-                </div>
-            </div>
-            <div class="dpt w-full text-center mx-auto pt-10 pb-3 sm:w-96 rounded-md text-white my-5 mx-2 grow cursor-pointer"
-                style="background-color: #34495E ;">
-                <h1 class="text-xl font-bold mb-1">Hello word</h1>
-                <p class="mb-4">java is good language nowadays</p>
-                <a class="py-3 px-10 bg-blue-600 rounded-full hover:bg-blue-700">View
-                    Notes</a>
-                <div class="pt-5">
-                    <span class="float-left mx-3" style="color: #BDC3C7 ;">Prof Abc </span>
-                    <span class="float-right mx-3" style="color: #BDC3C7 ;">14-2-2023</span>
-                </div>
-            </div>
+              <% 
+                 }
+
+                 } catch (Exception e) {
+                 e.printStackTrace();
+                 }
+                 %>
 
         </div>
     </div>

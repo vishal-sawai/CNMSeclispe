@@ -1,14 +1,19 @@
 package sqlcode;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -22,89 +27,85 @@ import sqlcode.DatabaseConnection;
 /**
  * Servlet implementation class notes
  */
+@MultipartConfig
 @WebServlet("/notes")
-@MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
 public class notes extends HttpServlet {
-	@SuppressWarnings("unused")
-	private final String UPLOAD_DIRECTORY = "uploadsnotes";
+	RequestDispatcher rd = null;
+
+	
 	private static final long serialVersionUID = 1L;
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		        String title = request.getParameter("title");
-		        String description = request.getParameter("description");
-		        String subject = request.getParameter("subject");
-		        String dept = request.getParameter("dept");
-		       // String filename = request.getParameter("filename");
-		        String sem = request.getParameter("sem");
-		        String usermail = request.getParameter("usermail");
-		        String teachername = request.getParameter("teachername");
-		        String userid = request.getParameter("userid");
-
-		         
-		        InputStream inputStream = null; 
-		         
-		        Part filePart = request.getPart("filename");
-		        if (filePart != null) {
-		            // prints out some information for debugging
-		            System.out.println(filePart.getName());
-		            System.out.println(filePart.getSize());
-		            System.out.println(filePart.getContentType());
-		             
-		            // obtains input stream of the upload file
-		            inputStream = filePart.getInputStream();
-		        }
-		         
-		        String message = null;
-		        Connection con = null;
-		        
-		        try {
-		       	 // Initialize the database
-		            con = DatabaseConnection.initializeDatabase();
-		            String sql = "INSERT INTO notes (title, description, filename,subject,dept,class,datetime,teacherid,teacherName) values (?, ?, ?,?, ?, ?,?,?,?)";
-		            PreparedStatement statement = con.prepareStatement(sql);
-		            statement.setString(1, title);
-		            statement.setString(2, description);
-		            statement.setString(4, subject);
-		            statement.setString(5, dept);
-		            statement.setString(6, sem);
-		            Date date = new Date();
-		            statement.setString(7,date.toString());
-		            statement.setString(8,userid);
-		            statement.setString(9,teachername);
-
-		            
-		            
-		            if (inputStream != null) {
-		                statement.setBlob(3, inputStream);
-		            }
-		 
-		            // sends the statement to the database server
-		            int row = statement.executeUpdate();
-		            if (row > 0) {
-		                message = "File uploaded and saved into database";
-		            }
-		        } catch (SQLException | ClassNotFoundException ex) {
-		            message = "ERROR: " + ex.getMessage();
-		            ex.printStackTrace();
-		        }
-		        finally {
-		            if (con != null) {
-		                // closes the database connection
-		                try {
-		                    con.close();
-		                } catch (SQLException ex) {
-		                    ex.printStackTrace();
-		                }
-		            }
-		            // sets the message in request scope
-		            //request.setAttribute("Message", message);
-		             
-		            // forwards to the message page
-		            //getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
-		        }
-		    }
-
+		Part file = request.getPart("filename");
+		
+		String pdfFileName = file.getSubmittedFileName();
+		System.out.println("pdf "+ pdfFileName);
+          
+		String uploadPath = "C:/Users/VISHAL SAWAI/eclipse-workspace/CNMS/src/main/webapp/uploadnotes/"+pdfFileName;
+		System.out.println("upload file path "+ uploadPath);
+		
+		try {
+		
+		FileOutputStream fos = new FileOutputStream(uploadPath);
+		InputStream is = file.getInputStream();
+		byte[] data = new byte[is.available()];
+		is.read();
+		fos.write(data);
+		fos.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		Connection con =null;
+		 String title = request.getParameter("title");
+	        String description = request.getParameter("description");
+	        String subject = request.getParameter("subject");
+	        String dept = request.getParameter("dept");
+	        String sem = request.getParameter("sem");
+	        String teachername = request.getParameter("teachername");
+	        String userid = request.getParameter("userid");
+		
+		try {
+			// Initialize the database
+            con = DatabaseConnection.initializeDatabase();
+            
+            String sql = "INSERT INTO notes (title, description, filename,subject,dept,class,datetime,teacherid,teacherName) values (?, ?, ?,?, ?, ?,?,?,?)";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, title);
+            statement.setString(2, description);
+            statement.setString(3,pdfFileName);
+            statement.setString(4, subject);
+            statement.setString(5, dept);
+            statement.setString(6, sem);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+            LocalDateTime now = LocalDateTime.now();  
+            statement.setString(7,dtf.format(now));
+            statement.setString(8,userid);
+            statement.setString(9,teachername);
+            
+            int row = statement.executeUpdate();
+            if(row>0)
+            {
+            	response.setContentType("text/html");
+  	            PrintWriter pw=response.getWriter();
+  	            pw.println("<script type=\"text/javascript\">");
+  	            pw.println("alert('Notes Uploaded successfully');");
+  	            pw.println("</script>");
+  	            rd=request.getRequestDispatcher("teacherportal.jsp");
+            }
+            else {
+            	response.setContentType("text/html");
+  	            PrintWriter pw=response.getWriter();
+  	            pw.println("<script type=\"text/javascript\">");
+  	            pw.println("alert('Notes Uploaded Failed');");
+  	            pw.println("</script>");
+  	            rd=request.getRequestDispatcher("teacherportal.jsp");
+            }
+            rd.include(request, response);;
+            return;
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 	}
-
+}
 

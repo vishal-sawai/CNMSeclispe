@@ -184,7 +184,7 @@
                 </button>
                 <div class="px-6 py-6 lg:px-8">
                     <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Select Course</h3>
-                    <form class="space-y-6" action="" method="">
+                    <form class="space-y-6" action="notes.jsp" method="post">
                         <div>
                             <label for="Course_name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Course Name</label>
