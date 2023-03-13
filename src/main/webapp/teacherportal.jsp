@@ -170,12 +170,13 @@ if(session.getAttribute("TeacherUser")==null){
                     <%
                         String nfile = resultSetNote.getString("filename");
                       %>
-           
                       <a href="uploadnotes/<%=resultSetNote.getString("filename")%>" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
                     
                     <td class="px-6 py-4">
                         <a href="delete.jsp?id=<%=resultSetNote.getString("id") %>&table=notes&page=teacherportal.jsp" class="font-medium text-white hover:underline">Delete</a>
+                    
+                    
                     </td>
                 </tr>
                  <% 
@@ -237,9 +238,18 @@ if(session.getAttribute("TeacherUser")==null){
                         <div>
                         <label for="subject"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subject</label>
-                        <input type="text" id="subject"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" name="subject" required>
+                            <select id="Subject"
+                                class="bg-gray-50 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="subject" required>
+                                <option selected>Select Subject</option>
+                                <option value="JAVA">JAVA</option>
+                                <option value="MARKETING">MARKETING</option>
+                                <option value="PHP">PHP</option>
+                                <option value="SEO">SEO</option>
+                                <option value="HTML">HTML</option>
+                                <option value="DBMS">DBMS</option>
+                                <option value="AWS">AWS</option>
+                                <option value="PYTHON">PYTHON</option>
+                            </select>
                             </div>
                             <div>
                           <label for="Select_semester"
@@ -263,10 +273,10 @@ if(session.getAttribute("TeacherUser")==null){
                     <div class="mb-6">
                         <label for="Select Notes File"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Notes
-                            File</label>
+                            File (<span class="text-red-900"> *Pdf</span>)</label>
                         <input type="file"name="file"
                             class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="file_input"  >
+                            id="file_input" accept="application/pdf"> 
                             
                     </div>
 

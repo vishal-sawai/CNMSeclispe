@@ -47,10 +47,12 @@ public class notes extends HttpServlet {
 		
 		try {
 		
-		FileOutputStream fos = new FileOutputStream(uploadPath);
 		InputStream is = file.getInputStream();
 		byte[] data = new byte[is.available()];
-		is.read();
+		
+		is.read(data);
+		FileOutputStream fos = new FileOutputStream(uploadPath);
+
 		fos.write(data);
 		fos.close();
 		}
