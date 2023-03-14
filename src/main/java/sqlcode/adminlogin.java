@@ -42,23 +42,17 @@ public class adminlogin extends HttpServlet {
 	           
 	            
 	            ResultSet rs = st.executeQuery();
-
+	            rd=request.getRequestDispatcher("admin_login.jsp");
+	            
 	            if(rs.next()) {
 	            	session.setAttribute("user",user);
-	               // response.sendRedirect("dashboard.jsp?email="+user);
+	            	request.setAttribute("status", "success");   
 	                rd=request.getRequestDispatcher("dashboard.jsp");
 	            }else {
-	            response.setContentType("text/html");
-	            PrintWriter pw=response.getWriter();
-	            pw.println("<script type=\"text/javascript\">");
-	            pw.println("alert('Invalid Username or Password');");
-	            pw.println("</script>");
-	            rd=request.getRequestDispatcher("admin_login.jsp");
+	                request.setAttribute("status", "failed");
 		        }
 	            rd.include(request, response);;
 	            return;
-	 
-	
 	        }
 	        catch (Exception e) {
 	            e.printStackTrace();

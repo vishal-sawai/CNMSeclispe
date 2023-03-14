@@ -16,6 +16,8 @@
 
 <body style="background-color: #5D6D7E;">
 
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
+
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -99,11 +101,20 @@
     </div>
 
     <!-- Login section end -->
-
-
-
+    
     <!-- Javascript -->
     <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    var status = document.getElementById("status").value;
+    if(status=="success"){
+    	swal("Congrats","Login Successfully","success");
+    }else{
+    	swal("Failed","Something Wrong","error");
+    }
+
+    </script>
 
 </body>
 

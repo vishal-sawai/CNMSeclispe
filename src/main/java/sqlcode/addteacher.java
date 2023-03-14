@@ -70,23 +70,15 @@ public class addteacher extends HttpServlet {
 				message.setText("Your Username/Mail: "+email+ " And Your Password Is: "+pass);
 	  
 	            int rowCount = st.executeUpdate();
+	            rd=request.getRequestDispatcher("dashboard.jsp");
 	            if(rowCount>0) {
 	            	Transport.send(message);        
-	            	response.setContentType("text/html");
-		            PrintWriter pw=response.getWriter();
-		            pw.println("<script type=\"text/javascript\">");
-		            pw.println("alert('Teacher Added Successfuly');");
-		            pw.println("</script>");
-		            rd=request.getRequestDispatcher("dashboard.jsp");
+	            	request.setAttribute("status", "success");  
+		         
 	            }else {
-	            	response.setContentType("text/html");
-		            PrintWriter pw=response.getWriter();
-		            pw.println("<script type=\"text/javascript\">");
-		            pw.println("alert('Something wrong');");
-		            pw.println("</script>");
-		            rd=request.getRequestDispatcher("dashboard.jsp");
+	            	   request.setAttribute("status", "failed");
 	            }
-	            rd.include(request, response);;
+	            rd.forward(request, response);
 	            return;
 	        }
 	        catch (Exception e) {

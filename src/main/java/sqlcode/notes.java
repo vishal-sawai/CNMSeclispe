@@ -95,9 +95,8 @@ public class notes extends HttpServlet {
             	request.setAttribute("status", "success");            }
             else {
                 request.setAttribute("status", "failed");
-
             }
-            rd.forward(request, response);;
+            rd.forward(request, response);
             return;
 		}catch(Exception e) {
 			System.out.println(e);

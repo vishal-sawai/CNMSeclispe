@@ -34,6 +34,7 @@ Connection con = DatabaseConnection.initializeDatabase();
 </head>
 
 <body>
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
 
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -593,6 +594,16 @@ Connection con = DatabaseConnection.initializeDatabase();
     <!-- Javascript -->
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    var status = document.getElementById("status").value;
+    if(status=="success"){
+    	swal("Congrats","User Added Successfully","success");
+    }else{
+    	swal("Failed","Upload Error","error");
+    }
+
+    </script>
 </body>
 
 </html>
