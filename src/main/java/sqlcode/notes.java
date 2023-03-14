@@ -88,24 +88,16 @@ public class notes extends HttpServlet {
             statement.setString(9,teachername);
             
             int row = statement.executeUpdate();
+	        rd=request.getRequestDispatcher("teacherportal.jsp");
+
             if(row>0)
             {
-            	response.setContentType("text/html");
-  	            PrintWriter pw=response.getWriter();
-  	            pw.println("<script type=\"text/javascript\">");
-  	            pw.println("alert('Notes Uploaded successfully');");
-  	            pw.println("</script>");
-  	            rd=request.getRequestDispatcher("teacherportal.jsp");
-            }
+            	request.setAttribute("status", "success");            }
             else {
-            	response.setContentType("text/html");
-  	            PrintWriter pw=response.getWriter();
-  	            pw.println("<script type=\"text/javascript\">");
-  	            pw.println("alert('Notes Uploaded Failed');");
-  	            pw.println("</script>");
-  	            rd=request.getRequestDispatcher("teacherportal.jsp");
+                request.setAttribute("status", "failed");
+
             }
-            rd.include(request, response);;
+            rd.forward(request, response);;
             return;
 		}catch(Exception e) {
 			System.out.println(e);

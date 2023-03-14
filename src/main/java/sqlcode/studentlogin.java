@@ -42,17 +42,13 @@ public class studentlogin extends HttpServlet {
 	           
 	            
 	            ResultSet rs = st.executeQuery();
-
+	            rd=request.getRequestDispatcher("login.jsp");
 	            if(rs.next()) {
 	            	session.setAttribute("studentUser",user);
-	                rd=request.getRequestDispatcher("index.jsp");
+	            	request.setAttribute("status", "success");
+		            rd=request.getRequestDispatcher("index.jsp");
 	            }else {
-	            response.setContentType("text/html");
-	            PrintWriter pw=response.getWriter();
-	            pw.println("<script type=\"text/javascript\">");
-	            pw.println("alert('Invalid Username or Password');");
-	            pw.println("</script>");
-	            rd=request.getRequestDispatcher("login.jsp");
+	                request.setAttribute("status", "failed");
 		        }
 	            rd.include(request, response);;
 	            return;

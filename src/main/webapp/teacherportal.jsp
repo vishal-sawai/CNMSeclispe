@@ -23,6 +23,7 @@ if(session.getAttribute("TeacherUser")==null){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="alert/dist/sweetalert.css">
 
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,6 +40,8 @@ if(session.getAttribute("TeacherUser")==null){
 </head>
 
 <body>
+
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
 
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -166,17 +169,14 @@ if(session.getAttribute("TeacherUser")==null){
                    <%=resultSetNote.getString("description") %>
                   </td>
                     <td class="px-6 py-4 bg-blue-500">
-                    
-                    <%
-                        String nfile = resultSetNote.getString("filename");
-                      %>
-                      <a href="uploadnotes/<%=resultSetNote.getString("filename")%>" class="font-medium text-white hover:underline">View Notes</a>
+                     
+                          <% String Path = resultSetNote.getString("filename"); %>
+                                                   
+                       <a href="uploadnotes/<%=Path%>" target="blank" class="font-medium text-white hover:underline">View Notes</a>
                     </td>
                     
                     <td class="px-6 py-4">
                         <a href="delete.jsp?id=<%=resultSetNote.getString("id") %>&table=notes&page=teacherportal.jsp" class="font-medium text-white hover:underline">Delete</a>
-                    
-                    
                     </td>
                 </tr>
                  <% 
@@ -322,10 +322,19 @@ if(session.getAttribute("TeacherUser")==null){
 
     <!-- Notes Section End -->
 
-
     <!-- Javascript -->
     <script src="js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    var status = document.getElementById("status").value;
+    if(status=="success"){
+    	swal("Congrats","Notes Upload Successfully","success");
+    }else{
+    	swal("Failed","Upload Error","error");
+    }
+
+    </script>
 
 </body>
 

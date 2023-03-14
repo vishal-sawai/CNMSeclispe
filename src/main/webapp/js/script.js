@@ -1,3 +1,11 @@
+// refresh page
+ 
+    function myfun(e){
+    	e.preventDefault()
+    	console.log("Not Refresh");
+    }
+
+
 // navbar button slide up and down
 const menu = document.getElementById('mobile-menu');
 const toggle = () => menu.classList.toggle("hidden");

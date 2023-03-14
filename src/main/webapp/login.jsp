@@ -12,9 +12,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    	<link rel="stylesheet" href="alert/dist/sweetalert.css">
 </head>
 
 <body style="background-color: #5D6D7E;">
+
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
 
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -84,7 +87,7 @@
                         <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">STUDENT LOGIN</h2>
                     </div>
-                    <form action="studentlogin" method="post">
+                    <form action="studentlogin" method="post" onsubmit="myfun()">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
@@ -111,7 +114,7 @@
                         <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">TEACHER LOGIN</h2>
                     </div>
-                    <form action="teacherlogin" method="post">
+                    <form action="teacherlogin" method="post" onsubmit="myfun()">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
@@ -140,7 +143,15 @@
 
     <!-- Javascript -->
     <script src=" js/script.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    var status = document.getElementById("status").value;
+    if(status=="success"){
+    	swal("Congrats","Login Successfully","success");
+    }else{
+    	swal("Failed","Something Wrong","error");
+    }
+    </script>
 </body>
 
 </html>

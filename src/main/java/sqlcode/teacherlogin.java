@@ -38,29 +38,20 @@ public class teacherlogin extends HttpServlet {
 	                   .prepareStatement("select * from teacher where email = ? and password = ?");
 	  
 	            st.setString(1, request.getParameter("username"));
-	  
 	            st.setString(2, request.getParameter("password"));
-	           
-	            
 	            ResultSet rs = st.executeQuery();
-
+	            rd=request.getRequestDispatcher("login.jsp");
 	            if(rs.next()) {
 	            	session.setAttribute("TeacherUser",user);
-	            	session.setAttribute("TeacherPass",pass);
-
+	            	session.setAttribute("TeacherPass",pass);	
+	            	request.setAttribute("status", "success");
 	                rd=request.getRequestDispatcher("teacherportal.jsp");
 	            }else {
-	            response.setContentType("text/html");
-	            PrintWriter pw=response.getWriter();
-	            pw.println("<script type=\"text/javascript\">");
-	            pw.println("alert('Invalid Username or Password');");
-	            pw.println("</script>");
-	            rd=request.getRequestDispatcher("login.jsp");
+	        
+	                request.setAttribute("status", "failed");
 		        }
 	            rd.include(request, response);;
 	            return;
-	 
-	
 	        }
 	        catch (Exception e) {
 	            e.printStackTrace();
