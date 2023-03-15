@@ -9,8 +9,8 @@
 <%@page import="sqlcode.DatabaseConnection" %>
 <%
  Connection con = DatabaseConnection.initializeDatabase();
-if(session.getAttribute("StudentUser")==null){
-	//response.sendRedirect("login.jsp");
+if(session.getAttribute("studentUser")==null){
+	response.sendRedirect("login.jsp");
 }
 %>
 <!DOCTYPE html>

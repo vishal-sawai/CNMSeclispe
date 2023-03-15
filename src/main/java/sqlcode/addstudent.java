@@ -1,7 +1,6 @@
 package sqlcode;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.Random;
@@ -18,7 +17,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
   
-import sqlcode.DatabaseConnection;
 /**
  * Servlet implementation class addstudent
  */
@@ -69,8 +67,6 @@ public class addstudent extends HttpServlet {
 				message.setSubject("CNMS Authentication details");
 				message.setText("Your Username/Mail: "+email+ " And Your Password Is: "+pass);
 			
-	         
-	  
 	            int rowCount = st.executeUpdate();
 	            rd=request.getRequestDispatcher("dashboard.jsp");
 
@@ -81,7 +77,6 @@ public class addstudent extends HttpServlet {
 	                request.setAttribute("status", "failed");
 	            }
 	            rd.forward(request, response);
-	            return;
 	        }
 	        catch (Exception e) {
 	            e.printStackTrace();

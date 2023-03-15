@@ -308,7 +308,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                 </div>
                 <!-- Modal body -->
 
-                <form action="addstudent" method="post" class="p-5" >
+                <form action="addstudent" method="post" class="p-5" onsubmit="myfun()">
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="first_name"
@@ -476,7 +476,7 @@ Connection con = DatabaseConnection.initializeDatabase();
                 </div>
                 <!-- Modal body -->
 
-                <form action="addteacher" method="post" class="p-5">
+                <form action="addteacher" method="post" class="p-5" onsubmit="myfun()">
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="first_name1"
@@ -599,8 +599,8 @@ Connection con = DatabaseConnection.initializeDatabase();
     var status = document.getElementById("status").value;
     if(status=="success"){
     	swal("Congrats","User Added Successfully","success");
-    }else{
-    	swal("Failed","Upload Error","error");
+    }else if(status=="failed"){
+    	swal("Failed","Something Wrong","error");
     }
 
     </script>

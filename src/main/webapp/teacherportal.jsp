@@ -216,7 +216,7 @@ if(session.getAttribute("TeacherUser")==null){
                 </div>
                 <!-- Modal body -->
 
-                <form class="p-5" action="notes" method="post" enctype="multipart/form-data">
+                <form class="p-5" action="notes" method="post" onsubmit="myfun()" enctype="multipart/form-data">
                     <div class="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                             <label for="title"
@@ -330,10 +330,9 @@ if(session.getAttribute("TeacherUser")==null){
     var status = document.getElementById("status").value;
     if(status=="success"){
     	swal("Congrats","Notes Upload Successfully","success");
-    }else{
-    	swal("Failed","Upload Error","error");
+    }else if(status=="failed"){
+    	swal("Failed","Something Wrong","error");
     }
-
     </script>
 
 </body>

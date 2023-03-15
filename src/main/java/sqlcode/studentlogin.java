@@ -1,14 +1,12 @@
 package sqlcode;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +18,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/studentlogin")
 public class studentlogin extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static final ServletResponse res = null;
-    
+	private static final long serialVersionUID = 1L;    
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = null;
@@ -45,20 +41,15 @@ public class studentlogin extends HttpServlet {
 	            rd=request.getRequestDispatcher("login.jsp");
 	            if(rs.next()) {
 	            	session.setAttribute("studentUser",user);
-	            	request.setAttribute("status", "success");
 		            rd=request.getRequestDispatcher("index.jsp");
 	            }else {
 	                request.setAttribute("status", "failed");
 		        }
-	            rd.include(request, response);;
+	            rd.include(request, response);
 	            return;
-	 
-	
 	        }
 	        catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	    }
-		
-
 }

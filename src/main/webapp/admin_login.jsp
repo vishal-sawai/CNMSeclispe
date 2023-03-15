@@ -77,7 +77,7 @@
                         <img class="h-28 mx-auto" src="img/cnms-logo.png" alt="" srcset="">
                         <h2 class="text-center text-xl font-bold text-gray-400">ADMIN LOGIN</h2>
                     </div>
-                    <form action="adminlogin" method="post">
+                    <form action="adminlogin" method="post" onsubmit="myfun()">
                         <div>
                             <div class="mb-2">
                                 <label class="block text-gray-700 font-medium mb-2">Email</label>
@@ -110,7 +110,7 @@
     var status = document.getElementById("status").value;
     if(status=="success"){
     	swal("Congrats","Login Successfully","success");
-    }else{
+    }else if(status=="failed"){
     	swal("Failed","Something Wrong","error");
     }
 
