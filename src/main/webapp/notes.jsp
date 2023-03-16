@@ -7,12 +7,6 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="sqlcode.DatabaseConnection" %>
-<%
- Connection con = DatabaseConnection.initializeDatabase();
-if(session.getAttribute("studentUser")==null){
-	response.sendRedirect("login.jsp");
-}
-%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +25,12 @@ if(session.getAttribute("studentUser")==null){
 
 <body>
 
+<%
+ Connection con = DatabaseConnection.initializeDatabase();
+if(session.getAttribute("studentUser")==null){
+response.sendRedirect("login.jsp");
+}
+%>
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

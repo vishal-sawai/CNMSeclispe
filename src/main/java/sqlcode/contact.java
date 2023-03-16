@@ -1,7 +1,6 @@
 package sqlcode;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -25,28 +24,19 @@ public class contact extends HttpServlet {
 	            // Initialize the database
 	            Connection con = DatabaseConnection.initializeDatabase();
 	  
-	            PreparedStatement st = con
-	                   .prepareStatement("insert into contact(name,email,phone,msg) values(?, ?, ?, ?)");
+	            PreparedStatement st = con.prepareStatement("insert into contact(name,email,phone,msg) values(?, ?, ?, ?)");
                
 	            st.setString(1, request.getParameter("name"));
 	            st.setString(2, request.getParameter("email"));
-	            st.setInt(3, Integer.valueOf(request.getParameter("phone")));
+	            st.setString(3, request.getParameter("phone"));
 	            st.setString(4, request.getParameter("msg"));
 	  
 	            int rowCount = st.executeUpdate();
 	            if(rowCount>0) {
-	            	response.setContentType("text/html");
-		            PrintWriter pw=response.getWriter();
-		            pw.println("<script type=\"text/javascript\">");
-		            pw.println("alert('your Message Send Successfuly');");
-		            pw.println("</script>");
+	                request.setAttribute("status", "success");
 		            rd=request.getRequestDispatcher("index.jsp");
 	            }else {
-	            	response.setContentType("text/html");
-		            PrintWriter pw=response.getWriter();
-		            pw.println("<script type=\"text/javascript\">");
-		            pw.println("alert('Something wrong');");
-		            pw.println("</script>");
+	                request.setAttribute("status", "failed");
 		            rd=request.getRequestDispatcher("index.jsp");
 	            }
 	            rd.include(request, response);;

@@ -33,6 +33,9 @@
 </head>
 
 <body>
+
+<input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
+
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -291,7 +294,7 @@
         </div>
         <div>
             <div class="px-5 pb-10">
-                <form action="contact" method="post"
+                <form action="contact" method="post" onsubmit="myfun()"
                     class="bg-white sm:p-6 sm:w-4/5 mx-auto rounded-md sm:px-20 px-5 py-10 shadow-lg shadow-indigo-500/40">
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Name</label>
@@ -301,17 +304,17 @@
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Email</label>
                         <input class="border border-gray-400 p-2 rounded-md w-full" type="email"
-                            placeholder="Enter your email" name="email"  required>
+                            placeholder="Enter your email" name="email" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Phone</label>
                         <input class="border border-gray-400 p-2 rounded-md w-full" type="tel"
-                            placeholder="Enter your phone number" name="phone"  required>
+                            placeholder="Enter your phone number" maxlength="10" minlength="10" name="phone" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 font-medium mb-2">Message</label>
                         <textarea class="border border-gray-400 p-2 rounded-md w-full h-32"
-                            placeholder="Enter your message" name="msg"  required></textarea>
+                            placeholder="Enter your message" name="msg" required></textarea>
                     </div>
                     <div>
                         <button
@@ -330,8 +333,18 @@
     <!-- Footer End -->
 
 
-    <!-- Javascript -->
+    <!-- JavaScript -->
     <script src=" js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    var status = document.getElementById("status").value;
+    if(status=="success"){
+    	swal("Congrats","Message Send Successfully","success");
+    }else if(status=="failed"){
+    	swal("Failed","Something Wrong","error");
+    }
+    </script>
 
     <!-- flowbite -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/flowbite.min.js"></script>
