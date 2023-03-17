@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>CNMS Login</title>
     <meta charset="UTF-8">
@@ -14,9 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     	<link rel="stylesheet" href="alert/dist/sweetalert.css">
 </head>
-
 <body style="background-color: #5D6D7E;">
-
 <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
 
     <!-- Navbar -->
@@ -55,7 +52,6 @@
                 </div>
             </div>
         </div>
-
 
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="hidden" id="mobile-menu">
@@ -140,8 +136,6 @@
     </div>
 
     <!-- Login section end -->
-
-
 
     <!-- Javascript -->
     <script src=" js/script.js"></script>
