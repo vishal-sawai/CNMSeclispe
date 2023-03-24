@@ -58,8 +58,8 @@
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="index.jsp"
-                                class="bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium">Home</a>
+                            <a href="dashbord.jsp"
+                                class="bg-gray-900 text-white px-5 py-6 rounded-md text-sm font-medium">Dashboard</a>
                         </div>
                     </div>
                 </div>
